@@ -1,0 +1,23 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarloBennett/week-12-bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarloBennett/week-12-bamazon/issues"
+  },
+  "homepage": "https://github.com/MarloBennett/week-12-bamazon#readme",
+  "dependencies": {
+    "mysql": "^2.11.1",
+    "prompt": "^1.0.0"
+  }
+}
