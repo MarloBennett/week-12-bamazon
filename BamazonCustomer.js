@@ -70,8 +70,39 @@ var transaction = function() {
 			console.log(err);
 			throw err;
 		}
+
+		//connect to database to query for stock number
+		connection.query("SELECT StockQuantity, Price from Products where ItemID = ?", result.orderID, function(err, DbResult) {
+			
+			if (err) {
+				console.log(err);
+				throw err;
+			}
+
+			console.log("in stock: " + DbResult[0].StockQuantity);
+			//compare order quantity to stock
+			if (result.orderQuantity > DbResult[0].StockQuantity) {
+				console.log("Sorry, there is an insufficient quantity of that item in stock.");
+			}
+			else {
+
+				var adjustedStock = DbResult[0].StockQuantity - result.orderQuantity;
+				
+				var updateQuery = "UPDATE Products SET StockQuantity =?" + adjustedStock + "WHERE ItemID =?" + result.orderID;
+				
+				var total = result.orderQuantity * DbResult[0].Price;
+				
+				connection.query(updateQuery, function(err, DbResult) {
+
+				console.log("adjusted stock: " + adjustedStock);
+				console.log("Your total is: $" + total.toFixed(2));
+				})
+			}
+			//console.log(DbResult);
+
+		//end of connction		
+		})
     
-		//console.log('Command-line input received:');
 		console.log("Order ID " + result.orderID);
 		console.log("Order quantity " + result.orderQuantity);
   });
