@@ -41,11 +41,39 @@ connection.connect(function(err) {
 			console.log("Price (US$): " + result[i].Price);
 			console.log("-----------------");
 		}
+		//call transaction function
+		transaction();
+
 	//end of query function	
 	})
 //end of connection
 })
 
+
 var transaction = function() {
-	
+
+	//start prompt npm function
+	prompt.start();
+
+	prompt.get({
+		properties: {
+			orderID: {
+				description: "Please enter the ID of the item you would like to order"
+			},
+			orderQuantity: {
+				description: "Please enter the number of this item you would like to order"
+			}
+		}
+	}, function (err, result) {
+
+		if (err) {
+			console.log(err);
+			throw err;
+		}
+    
+		//console.log('Command-line input received:');
+		console.log("Order ID " + result.orderID);
+		console.log("Order quantity " + result.orderQuantity);
+  });
 }
+
