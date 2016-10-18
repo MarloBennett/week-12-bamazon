@@ -88,7 +88,7 @@ var transaction = function() {
 
 				var adjustedStock = DbResult[0].StockQuantity - result.orderQuantity;
 				
-				var updateQuery = "UPDATE Products SET StockQuantity =?" + adjustedStock + "WHERE ItemID =?" + result.orderID;
+				var updateQuery = "UPDATE Products SET StockQuantity =" + adjustedStock + " WHERE ItemID =" + result.orderID;
 				
 				var total = result.orderQuantity * DbResult[0].Price;
 				
@@ -96,6 +96,7 @@ var transaction = function() {
 
 				console.log("adjusted stock: " + adjustedStock);
 				console.log("Your total is: $" + total.toFixed(2));
+				console.log(updateQuery);
 				})
 			}
 			//console.log(DbResult);
