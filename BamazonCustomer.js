@@ -80,6 +80,7 @@ var transaction = function() {
 			}
 
 			console.log("in stock: " + DbResult[0].StockQuantity);
+			
 			//compare order quantity to stock
 			if (result.orderQuantity > DbResult[0].StockQuantity) {
 				console.log("Sorry, there is an insufficient quantity of that item in stock.");
@@ -96,16 +97,15 @@ var transaction = function() {
 
 				console.log("adjusted stock: " + adjustedStock);
 				console.log("Your total is: $" + total.toFixed(2));
-				console.log(updateQuery);
 				})
 			}
-			//console.log(DbResult);
+			console.log(DbResult);
 
 		//end of connction		
 		})
     
-		console.log("Order ID " + result.orderID);
-		console.log("Order quantity " + result.orderQuantity);
+		console.log("Order ID: " + result.orderID);
+		console.log("Order quantity: " + result.orderQuantity);
   });
 }
 
