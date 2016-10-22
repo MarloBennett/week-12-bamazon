@@ -55,6 +55,7 @@ var transaction = function() {
 	//start prompt npm function
 	prompt.start();
 
+	//ask for order ID and quantity
 	prompt.get({
 		properties: {
 			orderID: {
@@ -79,7 +80,8 @@ var transaction = function() {
 				throw err;
 			}
 
-			console.log("in stock: " + DbResult[0].StockQuantity);
+			//for testing - print stock quantity
+			//console.log("in stock: " + DbResult[0].StockQuantity);
 			
 			//compare order quantity to stock
 			if (result.orderQuantity > DbResult[0].StockQuantity) {
@@ -87,19 +89,26 @@ var transaction = function() {
 			}
 			else {
 
+				//capture new stock number based on customer entry
 				var adjustedStock = DbResult[0].StockQuantity - result.orderQuantity;
 				
+				//make query into a string
 				var updateQuery = "UPDATE Products SET StockQuantity =" + adjustedStock + " WHERE ItemID =" + result.orderID;
 				
+				//capture total cost of order
 				var total = result.orderQuantity * DbResult[0].Price;
 				
+				//query to update stock in database
 				connection.query(updateQuery, function(err, DbResult) {
 
-				console.log("adjusted stock: " + adjustedStock);
+				//for testing - display adjusted stock
+				//console.log("adjusted stock: " + adjustedStock);
+				//display total
 				console.log("Your total is: $" + total.toFixed(2));
 				})
 			}
-			console.log(DbResult);
+			//for testing - display entire result
+			//console.log(DbResult);
 
 		//end of connction		
 		})
