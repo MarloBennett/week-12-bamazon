@@ -21,3 +21,5 @@ Video: http://www.screencast.com/t/Xn1yKw8S03L0
 
 
 *SQL for the Products table is in the sql_dumps folder.*
+
+*Created as part of the The Coding Bootcamp at UT Austin.*
